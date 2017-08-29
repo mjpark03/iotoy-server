@@ -1,0 +1,73 @@
+codecov:
+  token: 2ed8b144-8022-4033-bcb7-7d8065dc9c41
+  branch: dev
+  bot: mjpark03
+
+coverage:
+  precision: 2  # 2 = xx.xx%, 0 = xx%
+  round: down # default down
+  range: 25...60 # default 70...90. red...green
+
+  notify:
+    slack:
+      default:
+        url: "https://hooks.slack.com/services/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"
+        threshold: 1%
+        only_pulls: false
+        branches: null
+        flags: null
+        paths: null
+
+  status:
+      project:
+        default:
+          against: parent
+          target: auto
+          threshold: 1%
+          branches:
+            - dev
+          if_no_uploads: error
+          if_not_found: success
+          if_ci_failed: error
+          only_pulls: false
+          flags:
+            - integration
+          paths:
+            - folder
+
+      patch:
+        default:
+          against: parent
+          target: 80%
+          branches: null
+          if_no_uploads: success
+          if_not_found: success
+          if_ci_failed: error
+          only_pulls: false
+          flags:
+            - integration
+          paths:
+            - folder
+
+      changes:
+        default:
+          against: parent
+          branches: null
+          if_no_uploads: error
+          if_not_found: success
+          if_ci_failed: error
+          only_pulls: false
+          flags:
+            - integration
+          paths:
+            - folder
+  ignore:
+    - conf/*
+    - projct/*
+    - public/*
+    - test/*
+
+comment:
+  layout: reach, diff, flags, files
+  branches: *
+  behavior: default

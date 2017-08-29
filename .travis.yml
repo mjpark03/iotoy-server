@@ -1,0 +1,27 @@
+language: scala
+
+scala:
+  - 2.12.2
+
+branches:
+  only:
+    - dev
+    - feature/7bbF6WRR
+
+jdk:
+  - oraclejdk8
+
+script:
+  - ci_env=`bash <(curl -s https://codecov.io/env)`
+  - sbt ++$TRAVIS_SCALA_VERSION test
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+env:
+  global:
+    - DB_URL=jdbc:mysql://io-linker-dev.ccxpdsv7tuxs.ap-northeast-2.rds.amazonaws.com/linker
+    - DB_PASSWORD=!bobbers7
+
+notifications:
+  slack: switcher:Tkionvkg730XII2r6rIMDLPK

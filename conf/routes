@@ -1,0 +1,9 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+POST    /v1/user/token              controllers.UserController.createDeviceToken
+GET     /v1/user/detail             controllers.UserController.getUserDetail
+POST    /v1/user/auth               controllers.UserController.getAuthSMS
+PUT     /v1/user/auth               controllers.UserController.getAuthInfo
+GET     /v1/user/linkers            controllers.LinkerController.getLinkerDetail(macAddress: String)
