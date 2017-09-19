@@ -61,8 +61,11 @@ class LinkerController @Inject()(cc: ControllerComponents,
 
     val jsonBody: Option[JsValue] = request.body.asJson
     val iotoyId = (jsonBody.get \ "iotoyId").as[String]
+    val thingType = (jsonBody.get \ "thingType").as[String]
+    val thingId = (jsonBody.get \ "thingId").as[String]
+    val command = (jsonBody.get \ "command").as[String]
 
-    val parameterMap = Map("iotoyId" -> iotoyId)
+    val parameterMap = Map("iotoyId" -> iotoyId, "thingType" -> thingType, "thingId" -> thingId, "command" -> command)
 
     Request.checkRequestParameters(parameterMap) match {
       case Right(_) => Future.successful(Ok(Json.toJson(ErrorResponse(message = ErrorMessage.UNKNOWN_ERROR))))
