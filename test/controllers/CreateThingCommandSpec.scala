@@ -47,7 +47,7 @@ class CreateThingCommandSpec extends PlaySpecification with Mockito {
       val result = controller.createThingCommand(request)
 
       // then
-      val expectedResult = s"""{"status":"error","message":"${ErrorMessage.NO_IOTOY_ID}"}"""
+      val expectedResult = s"""{"status":"error","message":"iotoyId${ErrorMessage.NO_REQUEST_PARAMETER}"}"""
 
       status(result) must beEqualTo(OK)
       contentAsString(result) mustEqual(expectedResult)

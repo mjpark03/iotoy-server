@@ -4,7 +4,7 @@ import javax.inject.Inject
 
 import common.Request
 import data._
-import play.api.libs.json.{Json}
+import play.api.libs.json.{JsValue, Json}
 import play.api.mvc._
 import services.{UserService, LinkerService}
 
@@ -57,4 +57,16 @@ class LinkerController @Inject()(cc: ControllerComponents,
 
   }
 
+  def createThingCommand = Action.async { implicit request: Request[AnyContent] =>
+
+    val jsonBody: Option[JsValue] = request.body.asJson
+    val iotoyId = (jsonBody.get \ "iotoyId").as[String]
+
+    val parameterMap = Map("iotoyId" -> iotoyId)
+
+    Request.checkRequestParameters(parameterMap) match {
+      case Right(_) => Future.successful(Ok(Json.toJson(ErrorResponse(message = ErrorMessage.UNKNOWN_ERROR))))
+      case Left(parameter) => Future.successful(Ok(Json.toJson(ErrorResponse(message = parameter + ErrorMessage.NO_REQUEST_PARAMETER))))
+    }
+  }
 }
