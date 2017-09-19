@@ -7,3 +7,5 @@ GET     /v1/user/detail             controllers.UserController.getUserDetail
 POST    /v1/user/auth               controllers.UserController.getAuthSMS
 PUT     /v1/user/auth               controllers.UserController.getAuthInfo
 GET     /v1/user/linkers            controllers.LinkerController.getLinkerDetail(macAddress: String)
+
+POST    /v1/things/command          controllers.LinkerController.createThingCommand
