@@ -44,4 +44,8 @@ class LinkerService @Inject()(
   }
 
 
+  def createThingCommand(iotoyId: Long, thingType: String, thingId: Long, command: String): Either[String, String] = {
+
+    Right("")
+  }
 }

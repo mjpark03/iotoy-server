@@ -90,4 +90,11 @@ class LinkerServiceSpec extends PlaySpecification with Mockito {
     }
   }
 
+  "createThingCommand" should {
+
+    "return Left(error) if linker detail list is empty" in new WithApplication() {
+
+    }
+  }
+
 }
