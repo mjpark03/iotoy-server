@@ -60,12 +60,12 @@ class LinkerController @Inject()(cc: ControllerComponents,
   def createThingCommand = Action.async { implicit request: Request[AnyContent] =>
 
     val jsonBody: Option[JsValue] = request.body.asJson
-    val iotoyId = (jsonBody.get \ "iotoyId").as[String]
+    val iotoyId = (jsonBody.get \ "iotoyId").as[Long]
     val thingType = (jsonBody.get \ "thingType").as[String]
-    val thingId = (jsonBody.get \ "thingId").as[String]
+    val thingId = (jsonBody.get \ "thingId").as[Long]
     val command = (jsonBody.get \ "command").as[String]
 
-    val parameterMap = Map("iotoyId" -> iotoyId, "thingType" -> thingType, "thingId" -> thingId, "command" -> command)
+    val parameterMap = Map("iotoyId" -> iotoyId.toString, "thingType" -> thingType, "thingId" -> thingId.toString, "command" -> command)
 
     Request.checkRequestParameters(parameterMap) match {
       case Right(_) => Future.successful(Ok(Json.toJson(ErrorResponse(message = ErrorMessage.UNKNOWN_ERROR))))
